@@ -5,15 +5,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('nav ul li a');
     
     mobileMenuBtn.addEventListener('click', function() {
-        nav.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
+        // Toggle mobile menu visibility
+        nav.classList.toggle('show-menu');
+        
+        // Change icon between hamburger and close (X)
+        const icon = this.querySelector('i');
+        if (nav.classList.contains('show-menu')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
     
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            nav.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
+            nav.classList.remove('show-menu');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
     });
     
